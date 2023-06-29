@@ -31,7 +31,7 @@ function initStrcut(){
       }
       else{
         console.log(`Database ${process.env.DB_NAME} is exist`);
-        resolve(true)
+        resolve(false)
       }
     }
     catch(err){

@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
 const { getByEmail, getById, register } = require('../controlers/user');
-
-const { User } = require('../models');
 
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     getByEmail(email, password)
     .then((user)=>res.status(200).json(user))
-    .catch((err)=>res.status(401).send(err))
+    .catch((err)=>res.status(403).json(err))
   } 
   catch (error) {
     console.error(error);
@@ -28,7 +24,7 @@ router.post("/register", (req, res) => {
     }
     register(name, email, password)
     .then((user)=>res.status(200).json(user))
-    .catch((err)=>res.status(409).send(err))
+    .catch((err)=>res.status(403).send(err))
   } 
   catch (err) {
     console.error(err);

@@ -51,8 +51,8 @@ const Cart = db.define('Cart', {
   },
 });
 User.hasMany(Cart);
-// Cart.belongsTo(User);
-// Product.hasMany(Cart);
+Cart.belongsTo(User);
+Product.hasMany(Cart);
 Cart.belongsTo(Product);
 
 const initTables = () => db.sync({ force: true });

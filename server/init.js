@@ -38,25 +38,27 @@ const products = [
 
 
 
-module.exports=(async ()=>{
+module.exports=(()=>{
   try{
-    await initStrcut();
-    console.log('Database connected...')
-  }
-  catch(err){
-    console.error(err);
-  }
-  try{
-    await initTables();
-    console.log('Tables created successfully!');
-    await Product.bulkCreate(products)
-    await User.bulkCreate([
-      {
-        name:'Dima Boguzki',
-        password: await bcrypt.hash('1234', 10),
-        email:"dima@gmail.com"
+    initStrcut().then( async res => {
+      if(res){ // if db created now then create tables and default products
+        try{
+          await initTables();
+          console.log('Tables created successfully!');
+          await Product.bulkCreate(products)
+          await User.bulkCreate([
+            {
+              name:'Dima Boguzki',
+              password: await bcrypt.hash('1234', 10),
+              email:"dima@gmail.com"
+            }
+          ])
+        }
+        catch(err){
+          console.error(err);
+        }
       }
-    ])
+    })
   }
   catch(err){
     console.error(err);

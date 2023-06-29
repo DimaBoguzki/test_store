@@ -27,8 +27,11 @@ function getByEmail(email, password){
           })
         }
         else {
-          reject('User not found');
+          reject('invalid email or password');
         }
+      }
+      else {
+        reject('User not found');
       }
     })
   })

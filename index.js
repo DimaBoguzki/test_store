@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const init = require('./server/init');
 // const path = require('path');
 
@@ -13,7 +14,13 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
-
+app.use(
+  cors({
+    origin: 'http://localhost:3000', 
+    methods: ['GET', 'POST', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 // Set static folder 
 // app.use(express.static(path.join(__dirname, 'public')));
 
