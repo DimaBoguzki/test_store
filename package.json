@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+  "start": "concurrently \"npm run start:build\" \"npm run start:client\" \"npm run start:server\"",
   "start:client": "cd client && npm start",
-  "start:server": "node index.js"
+  "start:server": "node index.js",
+  "start:build": "npm install && cd client && npm install && cd .."
 },
   "author": "Dima Boguzki",
   "license": "ISC",

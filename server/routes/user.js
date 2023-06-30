@@ -34,13 +34,14 @@ router.post("/register", (req, res) => {
 
 router.get('/me', auth, async (req, res) => {
   try {
-    const { user_id } = req.user;
-    const user = await getById(user_id);
-    if (user) {
-      res.json(user);
-    } 
-    else {
-      res.status(404).json({ message: 'User not found' });
+    if(req?.user && req.user?.user_id){
+      const user = await getById(req.user.user_id);
+      if (user) {
+        res.json(user);
+      } 
+      else {
+        res.status(404).json({ message: 'User not found' });
+      }
     }
   } 
   catch (error) {

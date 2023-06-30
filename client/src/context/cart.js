@@ -89,12 +89,17 @@ function CartProvider({children}){
     }
   },[])
 
+  const total=React.useMemo(()=>(
+    state.items.reduce((acc, item)=> acc + item.Product.price*item.quantity, 0)
+  ),[state])
+
   return (
     <CartContext.Provider value={{
       addItem,
       removeItem,
       updateItem,
-      items: state.items
+      items: state.items,
+      total
     }} >
       { children }
     </CartContext.Provider>

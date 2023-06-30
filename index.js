@@ -24,10 +24,8 @@ app.use(
 // Set static folder 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-// Index route
 app.get('/', (req, res) => res.render('index', res.send('Dima')));
 
-// User routes
 app.use('/user', require('./server/routes/user'));
 app.use('/products', require('./server/routes/products'));
 app.use('/cart', require('./server/routes/cart'));

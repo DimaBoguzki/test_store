@@ -75,6 +75,11 @@ export default function Main(){
 
   return(
     <Container>
+      <Row>
+        <Col>
+          <h1 className="display-5 text-center mt-3 "> מוצרים </h1>
+        </Col>
+      </Row>
       {state.isLoading ?
        <FullSpinner /> : 
        <div className='my-4'>
