@@ -23,6 +23,7 @@ export default function Login() {
         setToken(res.data.token);
         axios.defaults.headers.common.Authorization = getAuthHeaderValue(); 
         setUser({ 
+          id: res.data.id,
           name: res.data.name,
           email: res.data.email
         });
@@ -42,7 +43,7 @@ export default function Login() {
 
 
   return (
-    <Container className="pt-5" >
+    <Container className="pt-5" style={{maxWidth:800}}>
       <Row>
         <Col>
           <Form method="post" onSubmit={onSubmit}>

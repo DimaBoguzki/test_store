@@ -24,13 +24,16 @@ function UserProvider({children}){
     },
     (err) => {
       if(err?.response && err?.response?.status === 407) { // Invalid Token
+        alert("חלף הזמן של הרשאה, אנא התחבר מחדש")
         logOut();
       }
       return Promise.reject(err);
     });
     axios.get("/user/me",{ headers: { Authorization : getAuthHeaderValue() } })
       .then((res) => {
+        console.log(res);
         setUser({ 
+          id: res.data.id,
           name: res.data.name,
           email: res.data.email
         });

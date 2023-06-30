@@ -15,9 +15,16 @@ function cartReducer(state, action) {
         ...state,
         items: [...state.items, action.payload],
       };
-    case 'REMOVE_ITEM':
     case 'UPDATE_QUANTITY':
-    case 'CLEAR_CART':
+      return {
+        ...state,
+        items: [...state.items.map( x=> ( x.id===action.payload.id ? action.payload : x ))],
+      };
+    case 'REMOVE_ITEM':
+      return {
+        ...state,
+        items: [...state.items.filter( x=> x.id !== action.payload )],
+      };
     default:
       return state;
   }
@@ -46,31 +53,48 @@ function CartProvider({children}){
       });
   }, []);
 
-  const addItem = (item) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
-  };
+  const addItem = React.useCallback((productId) => {
+    axios.post('/cart',{ userId:user.id, productId, quantity:1})
+    .then((res)=>{
+      dispatch({ type: 'ADD_ITEM', payload: res.data });
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[])
 
-  const removeItem = (itemId) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: itemId });
-  };
+  const removeItem = React.useCallback((itemId) => {
+    axios.delete(`/cart/${itemId}`)
+    .then((res)=>{
+      if(res)
+        dispatch({ type: 'REMOVE_ITEM', payload: itemId });
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[])
 
-  const updateItem= (itemId, quantity) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { itemId, quantity } });
-  };
-
-  const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' });
-  };
-
-
+  const updateItem = React.useCallback((itemId, quantity) => {
+    if(quantity > 0 ){
+      axios.patch(`/cart/${itemId}`,{ quantity })
+      .then((res)=>{
+        dispatch({ type: 'UPDATE_QUANTITY', payload: res.data });
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+    else{
+      removeItem(itemId)
+    }
+  },[])
 
   return (
     <CartContext.Provider value={{
       addItem,
       removeItem,
       updateItem,
-      clearCart,
-      state
+      items: state.items
     }} >
       { children }
     </CartContext.Provider>

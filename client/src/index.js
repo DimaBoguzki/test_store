@@ -12,12 +12,13 @@ axios.defaults.baseURL = "http://localhost:5000";
 // "scripts": {
 //   "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
 //   "start:client": "cd client && npm start",
-//   "start:server": "nodemon index.js"
+//   "start:server": "node index.js"
 // },
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// TODO IF STATUS === 407 token invalid then logout from app
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+// "scripts": {
+//   "test": "echo \"Error: no test specified\" && exit 1"
+// },
 
 async function init() {
   const root = ReactDOM.createRoot(

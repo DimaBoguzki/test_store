@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
 import axios from 'axios';
-import { Card, Form, Spinner, Container, Row, Col } from "react-bootstrap";
+import { Card, Form, Spinner, Container, Row, Col, Button } from "react-bootstrap";
 import { useUserContext, setToken, getAuthHeaderValue } from "../context/auth";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
@@ -12,6 +12,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const navigate = useNavigate();
 
   const { setUser } = useUserContext();
 
@@ -29,6 +30,7 @@ export default function Register() {
         setToken(res.data.token);
         axios.defaults.headers.common.Authorization = getAuthHeaderValue(); 
         setUser({ 
+          id: res.data.id,
           name: res.data.name,
           email: res.data.email
         });
@@ -47,7 +49,7 @@ export default function Register() {
 
 
   return (
-    <Container className="pt-5" >
+    <Container className="pt-5" style={{maxWidth:800}}>
       <Row>
         <Col>
           <Form method="post" onSubmit={onSubmit}>
@@ -130,6 +132,11 @@ export default function Register() {
                   )}
                 </button>
               </div>
+              <div className="d-grid mt-3">
+              <Button variant="outline-primary" onClick={()=>navigate('/login')}>
+                התחברות
+              </Button>
+            </div>
             </Card.Body>
           </Card>
           </Form>

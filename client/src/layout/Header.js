@@ -12,8 +12,8 @@ function Header() {
       style={{ zIndex: 50 }}
     >
       <div style={{background: "#f6f7f9", direction:'rtl'}}>
-        <div className="d-flex flex-wrap align-items-center justify-content-between container py-3">
-        <div className="d-flex align-items-center py-3">
+        <div className="d-flex flex-wrap align-items-center justify-content-between container py-2">
+        <div className="d-flex align-items-center py-1">
           <button
             type="button"
             className="btn btn-link text-decoration-none"
