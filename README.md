@@ -1,8 +1,7 @@
 
-## Available Scripts
+## הוראות הפעלה
 
-להריץ
-### `npm install`
-### `cd cient`
-### `cd ..`
-### `npm start`
+`npm install`
+`cd cient`
+`cd ..`
+`npm start`
