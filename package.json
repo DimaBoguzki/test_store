@@ -6,9 +6,8 @@
   "scripts": {
   "start": "concurrently \"npm run start:build\" \"npm run start:client\" \"npm run start:server\"",
   "start:client": "cd client && npm start",
-  "start:server": "node index.js",
-  "start:serverdev": "nodemon index.js",
-  "start:build": "npm install && cd client && npm install && cd .."
+  "start:server": "nodemon index.js",
+  "start:prod": "cd client npm install && npm run build && cd .. && node index.js"
 },
   "author": "Dima Boguzki",
   "license": "ISC",
@@ -22,8 +21,5 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.4.2",
     "sequelize": "^6.32.1"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.0"
   }
 }
