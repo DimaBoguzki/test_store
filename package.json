@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "concurrently \"npm run start:build\" \"npm run start:client\" \"npm run start:server\"",
   "start:client": "cd client && npm start",
   "start:server": "nodemon index.js",
-  "start:prod": "cd client npm install && npm run build && cd .. && node index.js"
+  "start:prod": "npm install && cd client && npm install && npm run build && cd .. && node index.js"
 },
   "author": "Dima Boguzki",
   "license": "ISC",
