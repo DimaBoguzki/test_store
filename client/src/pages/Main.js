@@ -61,7 +61,6 @@ export default function Main(){
   React.useEffect(()=>{
     axios.get("/products",)
       .then((res) => {
-        console.log(res);
         setState(p=>({
           ...p,
           isLoading:false,

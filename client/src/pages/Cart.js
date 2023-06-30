@@ -45,11 +45,13 @@ export default function Cart(){
         </Col>
       </Row>
       {items.map((item) => {
+        if(!item?.Product)
+          return null;
         const { Product } = item;
         return (
           <Row key={item.id} className="align-items-center  py-3" >
             <Col xs={12} md={1} lg={1} xxl={1}>
-              <Image src={Product?.image} thumbnail />
+              <Image src={Product.image} thumbnail />
             </Col>
             <Col>
               <span className="d-block fw-normal stretched-link">
@@ -58,12 +60,12 @@ export default function Cart(){
             </Col>
             <Col xs={12} md={2} lg={2} xxl={2}>
               <div className="d-flex justify-content-between">
-                <span>{`${Product?.price} שח`}</span>
+                <span>{`${Product.price} שח`}</span>
               </div>
             </Col>
             <Col xs={12} md={2} lg={2} xxl={2}>
               <div className="d-flex justify-content-between">
-                <span>{`${(Product?.price*item.quantity).toFixed(2)} שח`}</span>
+                <span>{`${(Product.price*item.quantity).toFixed(2)} שח`}</span>
               </div>
             </Col>
             <Col xs={12} md={2} lg={2} xxl={2}>

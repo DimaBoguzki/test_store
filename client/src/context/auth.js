@@ -31,7 +31,6 @@ function UserProvider({children}){
     });
     axios.get("/user/me",{ headers: { Authorization : getAuthHeaderValue() } })
       .then((res) => {
-        console.log(res);
         setUser({ 
           id: res.data.id,
           name: res.data.name,

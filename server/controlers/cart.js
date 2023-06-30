@@ -13,18 +13,20 @@ async function addToCart(userId, productId, quantity){
     return item.save();
   }
   else{
-    return Cart.create({ 
+    const item = await Cart.create({ 
       ProductId: productId, 
       UserId:userId,
       quantity 
     });
+    return Cart.findByPk(item.dataValues.id,{
+      include:[Product]
+    });
   }
 }
 
-
 function updateQuantity(itemID, quantity){ 
   return new Promise( ( resolve, reject ) => {
-    Cart.findByPk(itemID)
+    Cart.findByPk(itemID,{include:[Product]})
     .then( async item => {
       if(item){
         item.quantity = quantity;

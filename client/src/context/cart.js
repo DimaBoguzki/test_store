@@ -90,7 +90,12 @@ function CartProvider({children}){
   },[])
 
   const total=React.useMemo(()=>(
-    state.items.reduce((acc, item)=> acc + item.Product.price*item.quantity, 0)
+    state.items.reduce((acc, item)=> {
+      if(item?.Product && item.Product?.price){
+        return acc + item.Product.price*item.quantity
+      }
+      return acc + 0
+    }, 0)
   ),[state])
 
   return (
@@ -98,7 +103,7 @@ function CartProvider({children}){
       addItem,
       removeItem,
       updateItem,
-      items: state.items,
+      items: [...state.items],
       total
     }} >
       { children }

@@ -34,6 +34,7 @@ export default function Register() {
           name: res.data.name,
           email: res.data.email
         });
+        navigate('/');
       })
       .catch((err) => {
         setLoading(false);
