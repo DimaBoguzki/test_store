@@ -1,7 +1,7 @@
 
-## הוראות הפעלה
+## Instructions
 
-`npm install`
-`cd client`
-`cd ..`
-`npm start`
+# `npm install`
+# `cd client`
+# `cd ..`
+# `npm start`
