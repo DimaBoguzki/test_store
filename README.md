@@ -2,6 +2,6 @@
 ## הוראות הפעלה
 
 `npm install`
-`cd cient`
+`cd client`
 `cd ..`
 `npm start`
